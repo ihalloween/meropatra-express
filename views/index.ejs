@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>News App</title>
+  <!-- Add Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+  <!-- Add custom CSS for styling -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="bg-gray-100">
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Latest News</h1>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <% posts.forEach(function(post) { %>
+        <div class="col">
+          <div class="card h-100">
+            <% if(post.featured_media && post.featured_media.media_details && post.featured_media.media_details.sizes && post.featured_media.media_details.sizes.full) { %>
+              <img src="<%= post.featured_media.media_details.sizes.full.source_url %>" alt="<%= post.title.rendered %>" class="card-img-top">
+            <% } %>
+            <div class="card-body">
+              <h2 class="card-title"><%= post.title.rendered %></h2>
+              <p class="card-text"><%= post.excerpt.rendered.replace(/<\/?p>|<br\s?\/?>/g, '') %></p>
+            </div>
+            <div class="card-footer">
+              <a href="/post/<%= post.id %>" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</body>
+</html>
