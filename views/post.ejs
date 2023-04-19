@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>News App - <%= post.title.rendered %></title>
+  <!-- Add Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+  <!-- Add custom CSS for styling -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="bg-gray-100">
+  <div class="container mt-5">
+    <a href="/" class="text-primary">&lt; Back to News</a>
+    <h1 class="text-center mt-4 mb-5"><%= post.title.rendered %></h1>
+    <% if(post.featured_media && post.featured_media.media_details && post.featured_media.media_details.sizes && post.featured_media.media_details.sizes.medium) { %>
+      <img src="<%= post.featured_media.media_details.sizes.medium.source_url %>" alt="<%= post.title.rendered %>" class="img-fluid mb-4">
+    <% } %>
+    <div class="content" style="white-space: pre-line;"><%= post.content.rendered.replace(/<\/?p>|<br\s?\/?>/g, '') %></div>
+  </div>
+</body>
+</html>
